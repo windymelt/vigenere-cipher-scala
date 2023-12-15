@@ -6,8 +6,7 @@ val elbat = table.map(_.swap)
 def encrypt(key: String, plain: String): String =
   // 大文字に揃える
   val plainUpper = plain.toUpperCase()
-  val k0 = LazyList.from(key.toUpperCase())
-  val keyUpper: LazyList[Char] = LazyList.continually(k0).flatten // infinitely repeat `k0`
+  val keyUpper: LazyList[Char] = LazyList.continually(key.toUpperCase()).flatten // infinitely repeat `key`
 
   // kとpをzipし、それぞれの文字を数値に変換して足し合わせてmod 26を取る
   val cipher = (keyUpper zip plainUpper).map: (k, p) =>
